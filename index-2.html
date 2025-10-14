@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Herramientas de Contraseñas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Pro Pass Plus</h1>
+        <nav>
+            <button onclick="showSection('strength')">Comprobador de Fortaleza</button>
+            <button onclick="showSection('generator')">Generador de contraseñas</button>
+            <button onclick="showSection('hash')">Calculador de Hashes</button>
+            <button onclick="showSection('pwned')">Comprobador de Contraseñas Filtradas</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Comprobador de fortaleza -->
+        <section id="strength" class="tool-section">
+            <h2>Comprobador de Fortaleza</h2>
+            <input type="password" id="strengthInput" placeholder="Escribe tu contraseña">
+            <button onclick="checkStrength()">Comprobar</button>
+            <div id="strengthResult" class="result-box"></div>
+            <div id="strengthBarContainer">
+                <div id="strengthBar"></div>
+            </div>
+            <p id="crackTime"></p>
+        </section>
+
+        
+
+        <!-- Generador de contraseñas-->
+        <section id="generator" class="tool-section hidden">
+            <h2>Generador de Contraseñas</h2>
+            <button onclick="generatePassword('strong')">Generar Contraseña</button>
+            <label for="length">Longitud:</label>
+            <input type="number" id="length" min="4" max="64" value="16">
+
+            <label><input type="checkbox" id="useUpper" checked> Mayúsculas</label>
+            <label><input type="checkbox" id="useNumbers" checked> Números</label>
+            <label><input type="checkbox" id="useSymbols" checked> Símbolos</label>
+
+            <button onclick="generatePassword('phrase')">Generar Passphrase</button>
+
+            <label for="phraseWords">Palabras (passphrase):</label>
+            <input type="number" id="phraseWords" min="3" max="10" value="4">
+
+            <p id="generatedPassword"></p>
+            <button onclick="copyGenerated()">Copiar</button>
+        </section>
+
+        <!-- Calculador de hash -->
+        <section id="hash" class="tool-section hidden">
+            <h2>Calculador de Hash</h2>
+            <input type="text" id="hashInput" placeholder="Texto a convertir">
+            <select id="hashAlgo">
+                <option value="SHA-256">SHA-256</option>
+                <option value="SHA-384">SHA-384</option>
+                <option value="SHA-512">SHA-512</option>
+            </select>
+            <button onclick="calculateHash()">Calcular</button>
+            <p id="hashResult"></p>
+        </section>
+
+        <!-- Comprobador de contraseñas filtradas -->
+        <section id="pwned" class="tool-section hidden">
+            <h2>Comprobador de Contraseñas Filtradas</h2>
+            <input type="password" id="pwnedInput" placeholder="Escribe tu contraseña">
+            <button onclick="checkPwned()">Comprobar</button>
+            <div id="spinner" class="hidden"></div>
+            <p id="pwnedResult"></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

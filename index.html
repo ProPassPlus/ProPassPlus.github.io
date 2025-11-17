@@ -2,81 +2,199 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Herramientas de Contraseñas</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pro Pass Plus</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-    <header>
-        <h1>Pro Pass Plus</h1>
-        <nav>
-            <button onclick="showSection('strength')">Comprobador de Fortaleza</button>
-            <button onclick="showSection('generator')">Generador de contraseñas</button>
-            <button onclick="showSection('hash')">Calculador de Hashes</button>
-            <button onclick="showSection('pwned')">Comprobador de Contraseñas Filtradas</button>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Comprobador de fortaleza -->
-        <section id="strength" class="tool-section">
-            <h2>Comprobador de Fortaleza</h2>
-            <input type="password" id="strengthInput" placeholder="Escribe tu contraseña">
-            <button onclick="checkStrength()">Comprobar</button>
-            <div id="strengthResult" class="result-box"></div>
-            <div id="strengthBarContainer">
-                <div id="strengthBar"></div>
+    <!--<button id="mobileMenuToggle" class="mobile-menu-btn">☰</button>-->
+    <button id="mobileMenuToggle" class="mobile-menu-btn hidden">☰</button>
+
+
+
+
+    <!-- ===== LANDING PAGE ===== -->
+    <div id="landing" class="landing">
+        <div class="landing-content">
+            <h1>🔐 Pro Pass Plus</h1>
+            <p>Herramientas avanzadas para el análisis y generación de contraseñas.</p>
+            <button id="enterApp" class="btn-primary">Entrar</button>
+        </div>
+    </div>
+
+    <!-- ===== APP LAYOUT ===== -->
+    <div id="app" class="hidden">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar glass">
+            <div class="logo">
+                <span class="logo-icon">🔐</span>
+                <span class="logo-text">Pro Pass Plus</span>
             </div>
-            <p id="crackTime"></p>
-        </section>
 
-        
+            <nav class="menu">
+                <button class="menu-btn" data-section="strength">🛡️ Fortaleza</button>
+                <button class="menu-btn" data-section="generator">⚙️ Generador</button>
+                <button class="menu-btn" data-section="hash">🔢 Hashes</button>
+                <button class="menu-btn" data-section="pwned">⚠️ Filtraciones</button>
+                <button class="menu-btn" data-section="vault">🔐 Gestor Seguro</button>
+                <button class="menu-btn" data-section="history">📜 Historial</button>
+            </nav>
 
-        <!-- Generador de contraseñas-->
-        <section id="generator" class="tool-section hidden">
-            <h2>Generador de Contraseñas</h2>
-            <button onclick="generatePassword('strong')">Generar Contraseña</button>
-            <label for="length">Longitud:</label>
-            <input type="number" id="length" min="4" max="64" value="16">
+            <div class="theme-toggle">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </aside>
 
-            <label><input type="checkbox" id="useUpper" checked> Mayúsculas</label>
-            <label><input type="checkbox" id="useNumbers" checked> Números</label>
-            <label><input type="checkbox" id="useSymbols" checked> Símbolos</label>
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="content">
 
-            <button onclick="generatePassword('phrase')">Generar Passphrase</button>
+            <!-- SECCIÓN: Fortaleza -->
+            <section id="strength" class="tool-section glass hidden">
+                <h2>Comprobador de Fortaleza</h2>
 
-            <label for="phraseWords">Palabras (passphrase):</label>
-            <input type="number" id="phraseWords" min="3" max="10" value="4">
+                <input type="password" id="strengthInput" placeholder="Introduce tu contraseña">
+                <button onclick="checkStrength()" class="btn-primary">Comprobar</button>
 
-            <p id="generatedPassword"></p>
-            <button onclick="copyGenerated()">Copiar</button>
-        </section>
+                <div id="strengthResult" class="result-box"></div>
 
-        <!-- Calculador de hash -->
-        <section id="hash" class="tool-section hidden">
-            <h2>Calculador de Hash</h2>
-            <input type="text" id="hashInput" placeholder="Texto a convertir">
-            <select id="hashAlgo">
-                <option value="SHA-256">SHA-256</option>
-                <option value="SHA-384">SHA-384</option>
-                <option value="SHA-512">SHA-512</option>
-            </select>
-            <button onclick="calculateHash()">Calcular</button>
-            <p id="hashResult"></p>
-        </section>
+                <div id="strengthBarContainer">
+                    <div id="strengthBar"></div>
+                </div>
+                <p id="crackTime"></p>
+            </section>
 
-        <!-- Comprobador de contraseñas filtradas -->
-        <section id="pwned" class="tool-section hidden">
-            <h2>Comprobador de Contraseñas Filtradas</h2>
-            <input type="password" id="pwnedInput" placeholder="Escribe tu contraseña">
-            <button onclick="checkPwned()">Comprobar</button>
-            <div id="spinner" class="hidden"></div>
-            <p id="pwnedResult"></p>
-        </section>
-    </main>
+            <!-- SECCIÓN: Generador -->
+            <section id="generator" class="tool-section glass hidden">
+                <h2>Generador de Contraseñas</h2>
 
-    <script src="script.js"></script>
+                <button onclick="generatePassword('strong')" class="btn-primary">Generar Contraseña</button>
+                <label>Longitud:</label>
+                <input type="number" id="length" min="4" max="64" value="16">
+
+                <label><input type="checkbox" id="useUpper" checked> Mayúsculas</label>
+                <label><input type="checkbox" id="useNumbers" checked> Númereros</label>
+                <label><input type="checkbox" id="useSymbols" checked> Símbolos</label>
+
+                <button onclick="generatePassword('phrase')" class="btn-secondary">Generar Passphrase</button>
+                <label>Palabras:</label>
+                <input type="number" id="phraseWords" min="3" max="10" value="4">
+
+                <p id="generatedPassword"></p>
+                <button onclick="copyGenerated()" class="btn-secondary">Copiar</button>
+            </section>
+
+            <!-- SECCIÓN: Hash -->
+            <section id="hash" class="tool-section glass hidden">
+                <h2>Calculador de Hash</h2>
+                <input type="text" id="hashInput" placeholder="Texto a convertir">
+                <select id="hashAlgo">
+                    <option value="SHA-256">SHA-256</option>
+                    <option value="SHA-384">SHA-384</option>
+                    <option value="SHA-512">SHA-512</option>
+                </select>
+                <button onclick="calculateHash()" class="btn-primary">Calcular</button>
+                <p id="hashResult"></p>
+            </section>
+
+            <!-- SECCIÓN: Filtraciones -->
+            <section id="pwned" class="tool-section glass hidden">
+                <h2>Comprobador de Contraseñas Filtradas</h2>
+                <input type="password" id="pwnedInput" placeholder="Introduce tu contraseña">
+                <button onclick="checkPwned()" class="btn-primary">Comprobar</button>
+                <div id="spinner" class="hidden"></div>
+                <p id="pwnedResult"></p>
+            </section>
+
+            <section id="vault" class="tool-section glass hidden full-panel">
+
+                <h2>🔐 Gestor Seguro de Contraseñas</h2>
+
+                <!-- Clave maestra -->
+                <div id="vault-login" class="vault-block">
+                    <p>Introduce tu clave maestra para desbloquear el gestor:</p>
+                    <input type="password" id="vaultMasterPassword" placeholder="Clave maestra">
+                    <button onclick="vaultUnlock()" class="btn-primary">Desbloquear</button>
+                    <p class="note">La clave maestra nunca se guarda y solo se usa en memoria.</p>
+                </div>
+
+                <!-- Contenido del vault -->
+                <div id="vault-content" class="vault-block hidden">
+
+                    <div class="vault-header">
+                        <button onclick="vaultAddEntry()" class="btn-primary">➕ Añadir entrada</button>
+
+                        <div class="vault-tools">
+                            <button onclick="vaultExport()" class="btn-secondary">⬇ Exportar</button>
+                            <button class="btn-secondary" onclick="document.getElementById('vaultImportFile').click()">
+                                ⬆ Importar
+                            </button>
+                            <input type="file" id="vaultImportFile" class="hidden" onchange="vaultImport()">
+
+                            <button onclick="vaultLock()" class="btn-secondary">🔒 Bloquear </button>
+                        </div>
+                    </div>
+
+                    <div id="vaultEntries" class="vault-list">
+                        <!-- Entradas dinámicas -->
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="history" class="tool-section glass hidden full-panel">
+
+                <h2>📜 Historial del Generador</h2>
+
+                <div id="historyList" class="history-list">
+                    <!-- Entradas dinámicas -->
+                </div>
+
+                <button onclick="historyClear()" class="btn-secondary" style="margin-top:20px;">
+                    Limpiar historial
+                </button>
+
+            </section>
+
+
+            <!-- Modal para añadir o editar entradas -->
+            <div id="vaultModal" class="modal hidden">
+                <div class="modal-content glass">
+                    <h3 id="vaultModalTitle">Nueva entrada</h3>
+
+                    <label>Título:</label>
+                    <input type="text" id="vaultEntryTitle">
+
+                    <label>Usuario:</label>
+                    <input type="text" id="vaultEntryUser">
+
+                    <label>Contraseña:</label>
+                    <input type="text" id="vaultEntryPassword">
+
+                    <label>Notas:</label>
+                    <textarea id="vaultEntryNotes"></textarea>
+
+                    <div class="modal-actions">
+                        <button onclick="vaultSaveEntry()" class="btn-primary">Guardar</button>
+                        <button onclick="vaultCloseModal()" class="btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/theme.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+
+    <div id="sidebarOverlay"></div>
+
+
 </body>
 
 </html>

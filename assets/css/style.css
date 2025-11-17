@@ -1,0 +1,693 @@
+/* ========================= */
+/*       VARIABLES GLOBALES  */
+/* ========================= */
+
+:root {
+  --bg: #e3f2fd;
+  --text: #0d47a1;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+
+  --primary: #1565c0;
+  --primary-light: #1e88e5;
+  --secondary: #90caf9;
+
+  --sidebar-bg: rgba(255, 255, 255, 0.55);
+  --sidebar-border: rgba(255, 255, 255, 0.3);
+
+  --transition: 0.3s ease;
+}
+
+.dark-mode {
+  --bg: #0d1117;
+  --text: #e3f2fd;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  --sidebar-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+}
+
+/* ========================= */
+/*   GENERAL & RESET         */
+/* ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* ========================= */
+/*       LANDING PAGE        */
+/* ========================= */
+
+.landing {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+.landing-content {
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(12px);
+  padding: 40px 60px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.landing h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.landing p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ========================= */
+/*        BUTTONS            */
+/* ========================= */
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-light);
+  color: white;
+}
+
+/* ========================= */
+/*          SIDEBAR          */
+/* ========================= */
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--sidebar-border);
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.menu-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+}
+
+.theme-toggle {
+  margin-top: auto;
+  font-size: 1.6rem;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+/* ========================= */
+/*         CONTENT           */
+/* ========================= */
+
+.content {
+  margin-left: 270px;
+  padding: 30px;
+}
+
+/* ========================= */
+/*       TOOL SECTIONS       */
+/* ========================= */
+
+.tool-section {
+  max-width: 600px;
+  padding: 20px;
+  margin-bottom: 30px;
+
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+
+  animation: fadeUp 0.5s ease;
+}
+
+.tool-section h2 {
+  margin-bottom: 15px;
+}
+
+.tool-section input,
+.tool-section select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.tool-section p {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  word-break: break-word;
+}
+
+/* ========================= */
+/*     STRENGTH BAR          */
+/* ========================= */
+
+#strengthBarContainer {
+  width: 100%;
+  height: 10px;
+  background: #ccc;
+  border-radius: 8px;
+}
+
+#strengthBar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  border-radius: 8px;
+  transition: width 0.4s ease;
+}
+
+/* ========================= */
+/*        SPINNER            */
+/* ========================= */
+
+#spinner {
+  width: 30px;
+  height: 30px;
+  border: 4px solid #ddd;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 15px auto;
+}
+
+/* ========================= */
+/*         ANIMATIONS        */
+/* ========================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes spin {
+  from { transform: rotate(0);}
+  to { transform: rotate(360deg);}
+}
+
+/* ========================= */
+/*        RESPONSIVE         */
+/* ========================= */
+
+@media (max-width: 850px) {
+  .sidebar {
+    width: 200px;
+  }
+  .content {
+    margin-left: 220px;
+  }
+}
+
+
+
+
+
+/* ========================= */
+/*      MOBILE MENU BTN      */
+/* ========================= */
+
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 9999;
+  padding: 10px 14px;
+  font-size: 1.4rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.mobile-menu-btn:hover {
+  background: var(--primary-light);
+}
+
+@media (max-width: 650px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+
+
+/* ============================================================
+   ESTILOS AVANZADOS PARA EL VAULT (GESTOR SEGURO)
+   Tarjetas, modal, botones, diseño pro
+   Compatible con modo claro/oscuro
+============================================================ */
+
+/* PANEL COMPLETO */
+.full-panel {
+    width: 100%;
+    min-height: 80vh;
+    padding: 25px;
+}
+
+/* ----- BLOQUES PRINCIPALES DEL VAULT ----- */
+.vault-block {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+/* ----- HEADER DEL VAULT ----- */
+.vault-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.vault-tools {
+    display: flex;
+    gap: 10px;
+}
+
+.import-label {
+    cursor: pointer;
+}
+
+.import-label input {
+    display: none;
+}
+
+/* ----- LISTA DE ENTRADAS ----- */
+.vault-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ----- TARJETA DE ENTRADA DEL VAULT ----- */
+.vault-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vault-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+.vault-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.vault-user {
+    opacity: 0.8;
+    font-size: 0.95em;
+}
+
+/* ----- ACCIONES DE CADA ENTRADA ----- */
+.vault-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   MODAL PARA AÑADIR / EDITAR ENTRADAS
+============================================================ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20,20,20,0.45);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 380px;
+    max-width: 90%;
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 6px 26px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.12);
+    color: var(--text-color);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* ============================================================
+   HISTORIAL DEL GENERADOR
+============================================================ */
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* TARJETA DEL HISTORIAL */
+.history-card {
+    border-radius: 14px;
+    padding: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: 0.2s;
+}
+
+.history-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92em;
+    opacity: 0.9;
+}
+
+.history-value {
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
+.history-options {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.history-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* ============================================================
+   VARIABLES CUSTOM PARA GLASS + TEMA OSCURO
+============================================================ */
+
+:root {
+    --glass-bg: rgba(255,255,255,0.18);
+    --glass-bg-strong: rgba(255,255,255,0.22);
+    --glass-border: rgba(255,255,255,0.28);
+    --text-color: #222;
+}
+
+.dark-mode {
+    --glass-bg: rgba(0,0,0,0.28);
+    --glass-bg-strong: rgba(0,0,0,0.35);
+    --glass-border: rgba(255,255,255,0.12);
+    --text-color: #eee;
+}
+
+
+/* ============================================================
+   ESTILO AVANZADO PARA LA BARRA DE HERRAMIENTAS DEL VAULT
+   (Exportar - Importar - Bloquear)
+============================================================ */
+
+.vault-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Botones del vault: aspecto consistente */
+.vault-tools .btn-secondary,
+.vault-tools .btn-primary {
+    padding: 8px 14px;
+    font-size: 0.95em;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    transition: 0.18s ease-in-out;
+    min-width: 105px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Hover moderno estilo Material Design */
+.vault-tools .btn-secondary:hover,
+.vault-tools .btn-primary:hover {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+/* Modo oscuro */
+.dark-mode .vault-tools .btn-secondary,
+.dark-mode .vault-tools .btn-primary {
+    background: rgba(0,0,0,0.32);
+    border-color: rgba(255,255,255,0.18);
+}
+
+.dark-mode .vault-tools .btn-secondary:hover,
+.dark-mode .vault-tools .btn-primary:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* Inputs file escondidos totalmente */
+#vaultImportFile {
+    display: none !important;
+}
+
+/* Ajuste responsivo: si la barra es estrecha, los botones se apilan */
+@media (max-width: 450px) {
+    .vault-tools {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .vault-tools .btn-secondary,
+    .vault-tools .btn-primary {
+        width: 100%;
+    }
+}
+
+/* ========================= */
+/*   SIDEBAR MOVIL REAL      */
+/* ========================= */
+@media (max-width: 650px) {
+
+  .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100vh;
+      background: var(--sidebar-bg);
+      backdrop-filter: blur(12px);
+      z-index: 999999; /* SIEMPRE ENCIMA DEL OVERLAY */
+      transition: left 0.25s ease;
+  }
+
+  .sidebar.open {
+      left: 0;
+  }
+
+  .content {
+      margin-left: 0 !important;
+  }
+
+  .mobile-menu-btn {
+      display: block !important;
+      position: fixed;
+      z-index: 1000000 !important; /* EL BOTÓN SIEMPRE ENCIMA */
+  }
+}
+
+
+
+
+/* ============================================================
+   OVERLAY DEFINITIVO (Siempre encima del contenido)
+============================================================ */
+#sidebarOverlay {
+    position: fixed;
+    inset: 0;  /* top:0; left:0; right:0; bottom:0 */
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 999998; /* justo debajo del sidebar */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+#sidebarOverlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@media (max-width: 650px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 240px;
+        height: 100%;
+        z-index: 999999; /* encima del overlay */
+        transition: left 0.25s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+}
+
+#landing .mobile-menu-btn {
+    display: none !important;
+}
+
+
+
+
+

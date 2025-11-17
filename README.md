@@ -94,12 +94,27 @@ El gestor implementa un esquema de cifrado razonable para un proyecto académico
 - **Clave maestra no almacenada nunca**  
 - **Vault cifrado almacenado en localStorage**
 
+---
+
+## 🔐 Comportamiento de la Clave Maestra (Punto Crítico de Seguridad)
+
+- **La clave maestra nunca se guarda en ningún almacenamiento** (ni localStorage, ni sessionStorage, ni cookies, ni IndexedDB).
+- **La clave maestra nunca se envía a ningún servidor**, ya que Pro Pass Plus funciona completamente offline.
+- La clave maestra **solo se mantiene en memoria volátil** (RAM del navegador) durante el proceso de descifrado.
+- Una vez cargado el contenido del vault, **la clave derivada se elimina**, quedando únicamente el vault en memoria.
+- En cuanto se cierre la pestaña, se recargue la página o se bloquee el gestor, **la clave maestra desaparece por completo**.
+- El vault cifrado almacenado en localStorage **no puede descifrarse sin la clave maestra**, lo cual garantiza confidencialidad total.
+
+---
+
 ### ✔ Justificación académica  
 Para un proyecto universitario, este enfoque cumple los principios de OWASP referentes a:
 - almacenamiento seguro  
 - gestión de claves  
 - defensa frente a ataques offline  
 - confidencialidad de datos  
+
+---
 
 ### ⚙️ Mejoras posibles en entorno real  
 En un sistema profesional se añadirían:
@@ -108,13 +123,6 @@ En un sistema profesional se añadirían:
 - auto‑lock por inactividad  
 - pentesting y análisis de amenazas  
 - política de borrado seguro  
-
----
-
-## 🚀 Deploy
-
-Pro Pass Plus funciona **100% en local** y es totalmente compatible con GitHub Pages.  
-No necesita backend ni instalación.
 
 ---
 

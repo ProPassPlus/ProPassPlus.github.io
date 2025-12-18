@@ -27,6 +27,7 @@ import "./hash.js";
 import "./pwned.js";
 import "./utils.js";
 import "./vault.js";
+import { initAuditUI } from "./audit-ui.js";
 import { historyRender } from "./history.js";
 
 
@@ -67,6 +68,13 @@ export function showSection(sectionId) {
     if (sectionId === "history") {
         historyRender();
     }
+
+    // Si entramos a auditoría → inicializar UI
+    if (sectionId === "audit") {
+    initAuditUI();
+}
+
+
 }
 
 document.querySelectorAll(".menu-btn").forEach(btn => {

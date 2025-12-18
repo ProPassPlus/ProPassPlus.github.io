@@ -63,6 +63,27 @@ function suffixFound(suffix, rangeText) {
 }
 
 /**
+ * Comprueba si una contraseña aparece en filtraciones conocidas
+ * usando K-Anonymity (HIBP).
+ *
+ * Función PURA: no toca DOM ni UI.
+ *
+ * @param {string} password
+ * @returns {Promise<boolean>}
+ */
+async function isPasswordPwned(password) {
+  if (!password) return false;
+
+  const hash = await sha1(password);
+  const prefix = hash.substring(0, 5);
+  const suffix = hash.substring(5);
+
+  const rangeText = await fetchPwnedRange(prefix);
+  return suffixFound(suffix, rangeText);
+}
+
+
+/**
  * Función principal que se llama desde el UI.
  * Evalúa la contraseña y actualiza:
  *  - #spinner
@@ -83,16 +104,8 @@ async function checkPwnedInternal() {
   }
 
   try {
-    // 1. SHA-1 local
-    const hash = await sha1(input);
-    const prefix = hash.substring(0, 5);
-    const suffix = hash.substring(5);
+    const found = await isPasswordPwned(input);
 
-    // 2. Consultar API
-    const rangeText = await fetchPwnedRange(prefix);
-
-    // 3. Ver si aparece
-    const found = suffixFound(suffix, rangeText);
 
     spinner.classList.add("hidden");
 
@@ -114,6 +127,8 @@ async function checkPwnedInternal() {
 ------------------------------------------------------------- */
 
 export { checkPwnedInternal as checkPwned };
+export { isPasswordPwned };
+
 
 // Para compatibilidad con onclick del HTML
 window.checkPwned = checkPwnedInternal;

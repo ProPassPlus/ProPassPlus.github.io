@@ -376,6 +376,28 @@ async function vaultImport() {
 }
 
 /* ============================================================
+   9.5. ACCESO CONTROLADO (SOLO LECTURA)
+============================================================ */
+
+/**
+ * Indica si el vault está actualmente desbloqueado.
+ * @returns {boolean}
+ */
+function vaultIsUnlocked() {
+  return currentVault !== null;
+}
+
+/**
+ * Devuelve las entradas del vault descifrado.
+ * SOLO lectura. Devuelve null si está bloqueado.
+ * @returns {Array|null}
+ */
+function vaultGetEntries() {
+  if (!currentVault) return null;
+  return currentVault.entries;
+}
+
+/* ============================================================
    10. EXPOSICIÓN GLOBAL
 ============================================================ */
 
@@ -391,3 +413,6 @@ window.vaultLock = vaultLock;
 window.vaultExport = vaultExport;
 window.vaultImport = vaultImport;
 window.vaultCloseModal = vaultCloseModal;
+window.vaultIsUnlocked = vaultIsUnlocked;
+window.vaultGetEntries = vaultGetEntries;
+

@@ -688,6 +688,88 @@ body {
 }
 
 
+/* ============================================================
+   AUDITORÍA DE SEGURIDAD
+============================================================ */
+
+.audit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#auditLockBtn {
+  white-space: nowrap;
+}
+
+
+.audit-block {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+}
+
+.audit-block h4 {
+  margin-bottom: 8px;
+}
+
+.audit-block ul {
+  margin-left: 18px;
+}
+
+.audit-block li {
+  margin-bottom: 6px;
+}
+
+.audit-ok {
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.audit-warning {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.4);
+}
+
+.audit-danger {
+  background: rgba(244, 67, 54, 0.15);
+  border-color: rgba(244, 67, 54, 0.4);
+}
+
+/* ------------------------------------------------------------
+   Ajustes de espaciado - Auditoría manual
+------------------------------------------------------------- */
+
+/* Espacio antes del título "Auditoría manual" */
+#audit h3 {
+  margin-top: 32px;
+}
+
+/* Espacio debajo del botón "Analizar contraseña" */
+#audit #auditPasswordBtn {
+  margin-bottom: 24px;
+}
+
+/* ------------------------------------------------------------
+   Botón Bloquear compacto (Auditoría)
+------------------------------------------------------------- */
+
+#auditLockBtn {
+  padding: 6px 14px;        /* menos alto y ancho */
+  font-size: 0.9rem;        /* texto más compacto */
+  width: auto;              /* que NO se estire */
+  min-width: unset;         /* anula tamaños mínimos */
+  align-self: center;       /* centrado vertical */
+}
+
+
+
+
 
 
 

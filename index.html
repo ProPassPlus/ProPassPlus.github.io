@@ -41,7 +41,10 @@
                 <button class="menu-btn" data-section="hash">🔢 Hashes</button>
                 <button class="menu-btn" data-section="pwned">⚠️ Filtraciones</button>
                 <button class="menu-btn" data-section="vault">🔐 Gestor Seguro</button>
+                <button class="menu-btn" data-section="audit">🔍 Auditoría</button>
                 <button class="menu-btn" data-section="history">📜 Historial</button>
+
+
             </nav>
 
             <div class="theme-toggle">
@@ -144,6 +147,43 @@
 
                 </div>
             </section>
+
+            <section id="audit" class="tool-section glass hidden full-panel">
+
+                <div class="audit-header">
+                    <h2>🔍 Auditoría de Seguridad</h2>
+                    <button id="auditLockBtn" class="btn-secondary">
+                        🔒 Bloquear
+                    </button>
+                </div>
+
+
+                <!-- BLOQUE: AUDITORÍA BLOQUEADA -->
+                <div id="auditLocked" class="vault-block">
+                    <p>Introduce la clave maestra para acceder a la auditoría:</p>
+                    <input type="password" id="auditMasterPassword" placeholder="Clave maestra">
+                    <button id="auditUnlockBtn" class="btn-primary">Desbloquear</button>
+                    <p class="note">
+                        Se utiliza la misma clave que el gestor seguro. La clave no se guarda.
+                    </p>
+                </div>
+
+                <!-- BLOQUE: AUDITORÍA DESBLOQUEADA -->
+                <div id="auditContent" class="vault-block hidden">
+
+                    <h3>Resumen del vault</h3>
+                    <div id="auditSummary" class="result-box"></div>
+
+                    <h3>Auditoría manual</h3>
+                    <input type="password" id="auditPasswordInput" placeholder="Introduce una contraseña">
+                    <button id="auditPasswordBtn" class="btn-secondary">Analizar contraseña</button>
+
+                    <div id="auditPasswordResult" class="result-box"></div>
+
+                </div>
+
+            </section>
+
 
             <section id="history" class="tool-section glass hidden full-panel">
 
